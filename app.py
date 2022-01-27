@@ -13,6 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+file_path
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db = SQLAlchemy(app)
 
+
 class todo(db.Model):
 	id=db.Column(db.Integer,primary_key=True)
 	title=db.Column(db.String(50), nullable=False)
@@ -117,3 +118,6 @@ def delete(sno):
 
 if __name__=="main":
 	app.run(debug=True)
+
+
+	
