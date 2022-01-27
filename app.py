@@ -6,7 +6,7 @@ from datetime import datetime
 
 from sqlalchemy import desc 
 
-file_path = os.path.abspath(os.getcwd())+"\database.db"
+file_path = os.path.abspath(os.getcwd())+"/database.db"
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+file_path
@@ -120,4 +120,3 @@ if __name__=="main":
 	app.run(debug=True)
 
 
-	
