@@ -1,0 +1,61 @@
+<!-- 1. We have created a new route called `/` which is the home page. 
+2. We have added a form to the home page which will allow us to add a new todo. 
+3. We have added a new route called `/add` which will handle the form submission. 
+4. We have added a new route called `/delete/<id>` which will delete the todo with the given id. 
+5. We have added a new route called `/update/<id>` which will update the -->
+{% extends 'base.html' %}
+
+{% block body %}
+	
+
+
+    <div class='container mt-3'> 
+		<h2>Add a ToDO</h2>
+		<form action='/' method='POST' >
+			<div class="mb-3">
+			  <label for="todo_title" class="form-label">ToDo title</label>
+			  <input type="text" class="form-control" id="todo_title" name='title'>
+			</div>
+			<div class="mb-3">	
+			  <label for="todo_desc" class="form-label" >Description</label>
+			  <input type="text" class="form-control" id="todo_desc"name='description'>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		  </form>
+		  {% if queries|length==0 %}
+		  <div class="alert alert-light" role="alert">
+			No record found!! Add a todo
+		  </div>
+			  
+		  {% else %}
+
+		  	
+		  <h4 class='m-2'>TODO lists</h4>
+		  <table class="table">
+			<thead>
+			  <tr>
+				<th scope="col">SNo</th>
+				<th scope="col">Titile</th>
+				<th scope="col">Description</th>
+				<th scope="col">Date Created</th>
+			  </tr>
+			</thead>
+			<tbody>
+			{% for query in queries %}
+			
+				<tr>
+				  <th scope="row">{{loop.index}}</th>
+				  <td>{{query.title}}</td>
+				  <td>{{query.description}}</td> 
+				  <td>{{query.date_created}}</td>
+				  <td>
+					<a href='/delete/{{query.id}}'><button type="button" class="btn btn-primary btn-sm m-2">Delete</button></a>
+					<a href='/update/{{query.id}}'><button type="button" class="btn btn-secondary btn-sm m-2">Update</button></a>
+				  </td>
+				</tr>			  
+			{% endfor %}			  
+		  {% endif %}
+			</tbody>		
+		</table>			
+	</div>
+	{% endblock body %}
